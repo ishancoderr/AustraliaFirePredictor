@@ -1,0 +1,15 @@
+---
+title: "AustraliaForestFireAnalysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{AustraliaForestFireAnalysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r}
+library(AustraliaFirePredictor)
+plot_fire_locations()
+
+```
