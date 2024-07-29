@@ -1,17 +1,8 @@
 ---
-github_document
+ github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 AustraliaFirePredictor
 <!-- badges: start -->
@@ -48,22 +39,13 @@ This data is used to train machine learning models to predict fire occurrences a
 
 Example
 This is a basic example that shows you how to use the main functions in the AustraliaFirePredictor package:
+
+**predict_fire(input_data)**- function 
+
+The predict_fire(input_data) function preprocesses the input data and utilizes a pre-trained XGBoost model to make fire predictions. It converts categorical variables to numeric format, loads the model from the package, and generates predictions based on the provided data.
+
 ```{r}
-library(AustraliaFirePredictor)
-
-# Path to the example fire data CSV file included in the package
-file_path <- system.file("extdata", "fire_data.csv", package = "AustraliaFirePredictor")
-
-# Path to save the trained model
-output_model_path <- file.path(tempdir(), "firePredictorModel.xgb")
-
-# Run the fire location check function to train the model and evaluate it
-results <- fire_location_check(file_path = file_path, output_model_path = output_model_path)
-
-# Print the RMSE of the trained model
-cat("Model RMSE:", results$rmse, "\n")
-
-# Create example input data for prediction
+# Example usage
 input_data <- data.frame(
   longitude = -119.7,
   latitude = 34.5,
@@ -77,12 +59,45 @@ input_data <- data.frame(
   bright_t31 = 290.0
 )
 
-# Predict fire occurrences using the trained model
+# Call the function with the input data
 predictions <- predict_fire(input_data)
 
-# Print the predictions
+# Print predictions
 print(predictions)
 
+```
+
+**plot_fire_locations()**
+
+The plot_fire_locations() function generates a plot of fire locations using data from a built-in dataset.
+
+```{r}
+library(AustraliaFirePredictor)
+
+# Plot fire locations
+plot_fire_locations()
+```
+
+![Description of image](man/figures/locations.PNG)
+
+
+**fire_location_check(file_path, output_model_path)**
+
+The fire_location_check(file_path, output_model_path) function reads fire data from a CSV file, preprocesses it, trains an XGBoost model, and optionally saves the model to the specified path.
+**if you have dataset with above parameters you can tran model via this function**
+
+```{r}
+library(AustraliaFirePredictor)
+
+# Specify file paths
+file_path <- system.file("extdata", "fire_data.csv", package = "AustraliaFirePredictor")
+output_model_path <- system.file("model", "firePredictorModel.xgb", package = "AustraliaFirePredictor")
+
+# Call the function with the file paths
+results <- fire_location_check(file_path, output_model_path)
+
+# View the results
+print(results)
 ```
 
 
