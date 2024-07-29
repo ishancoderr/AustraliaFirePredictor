@@ -1,5 +1,5 @@
 ---
-output: github_document
+github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -26,6 +26,26 @@ You can install the development version of AustraliaFirePredictor from GitHub wi
 devtools::install_github("ishancoderr/AustraliaFirePredictor")
 
 ```
+## Data Explanation
+
+The data used in this package contains the following columns:
+
+- **Latitude**: Center of 1km fire pixel but not necessarily the actual location of the fire as one or more fires can be detected within the 1km pixel.
+- **Longitude**: Center of 1km fire pixel but not necessarily the actual location of the fire as one or more fires can be detected within the 1km pixel.
+- **Brightness**: Brightness temperature 21 (Kelvin). Channel 21/22 brightness temperature of the fire pixel measured in Kelvin.
+- **Scan**: Along Scan pixel size. The algorithm produces 1km fire pixels, but MODIS pixels get bigger toward the edge of scan. Scan and track reflect actual pixel size.
+- **Track**: Along Track pixel size. The algorithm produces 1km fire pixels, but MODIS pixels get bigger toward the edge of scan. Scan and track reflect actual pixel size.
+- **Acq_date**: Acquisition Date. Date of MODIS acquisition.
+- **Acq_time**: Acquisition Time. Time of acquisition/overpass of the satellite (in UTC).
+- **Satellite**: Satellite. A = Aqua and T = Terra.
+- **Instrument**: Instrument. Constant value for MODIS.
+- **Confidence**: Confidence (0-100%). This value is based on a collection of intermediate algorithm quantities used in the detection process. It is intended to help users gauge the quality of individual hotspot/fire pixels. Confidence estimates range between 0 and 100% and are assigned to one of the three fire classes (low-confidence fire, nominal-confidence fire, or high-confidence fire).
+- **Bright_t31**: Brightness temperature 31 (Kelvin). Channel 31 brightness temperature of the fire pixel measured in Kelvin.
+- **Frp**: Fire Radiative Power. Depicts the pixel-integrated fire radiative power in MW (megawatts).
+- **Daynight**: Day / Night. D = Daytime, N = Nighttime.
+
+This data is used to train machine learning models to predict fire occurrences and analyze fire patterns in Australia.
+
 Example
 This is a basic example that shows you how to use the main functions in the AustraliaFirePredictor package:
 ```{r}
@@ -65,21 +85,5 @@ print(predictions)
 
 ```
 
-Data Explanation
-The data used in this package contains the following columns:
 
-Latitude: Center of 1km fire pixel but not necessarily the actual location of the fire as one or more fires can be detected within the 1km pixel.
-Longitude: Center of 1km fire pixel but not necessarily the actual location of the fire as one or more fires can be detected within the 1km pixel.
-Brightness: Brightness temperature 21 (Kelvin). Channel 21/22 brightness temperature of the fire pixel measured in Kelvin.
-Scan: Along Scan pixel size. The algorithm produces 1km fire pixels, but MODIS pixels get bigger toward the edge of scan. Scan and track reflect actual pixel size.
-Track: Along Track pixel size. The algorithm produces 1km fire pixels, but MODIS pixels get bigger toward the edge of scan. Scan and track reflect actual pixel size.
-Acq_date: Acquisition Date. Date of MODIS acquisition.
-Acq_time: Acquisition Time. Time of acquisition/overpass of the satellite (in UTC).
-Satellite: Satellite. A = Aqua and T = Terra.
-Instrument: Instrument. Constant value for MODIS.
-Confidence: Confidence (0-100%). This value is based on a collection of intermediate algorithm quantities used in the detection process. It is intended to help users gauge the quality of individual hotspot/fire pixels. Confidence estimates range between 0 and 100% and are assigned to one of the three fire classes (low-confidence fire, nominal-confidence fire, or high-confidence fire).
-Bright_t31: Brightness temperature 31 (Kelvin). Channel 31 brightness temperature of the fire pixel measured in Kelvin.
-Frp: Fire Radiative Power. Depicts the pixel-integrated fire radiative power in MW (megawatts).
-Daynight: Day / Night. D = Daytime, N = Nighttime.
-This data is used to train machine learning models to predict fire occurrences and analyze fire patterns in Australia.
 
