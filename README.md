@@ -40,7 +40,10 @@ This data is used to train machine learning models to predict fire occurrences a
 Example
 This is a basic example that shows you how to use the main functions in the AustraliaFirePredictor package:
 
-##**predict_fire(input_data)**- function 
+
+##Function Calls
+
+##predict_fire(input_data)
 
 The predict_fire(input_data) function preprocesses the input data and utilizes a pre-trained XGBoost model to make fire predictions. It converts categorical variables to numeric format, loads the model from the package, and generates predictions based on the provided data.
 
@@ -67,7 +70,7 @@ print(predictions)
 
 ```
 
-##**plot_fire_locations()**
+##plot_fire_locations()
 
 The plot_fire_locations() function generates a plot of fire locations using data from a built-in dataset.
 
@@ -81,7 +84,7 @@ plot_fire_locations()
 ![Description of image](man/figures/locations.PNG)
 
 
-##**fire_location_check(file_path, output_model_path)**
+##fire_location_check(file_path, output_model_path)
 
 The fire_location_check(file_path, output_model_path) function reads fire data from a CSV file, preprocesses it, trains an XGBoost model, and optionally saves the model to the specified path.
 **if you have dataset with above parameters you can tran model via this function**
@@ -99,6 +102,5 @@ results <- fire_location_check(file_path, output_model_path)
 # View the results
 print(results)
 ```
-
 
 
