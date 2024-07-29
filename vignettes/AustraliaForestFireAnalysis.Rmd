@@ -13,3 +13,34 @@ library(AustraliaFirePredictor)
 plot_fire_locations()
 
 ```
+```{r}
+library(AustraliaFirePredictor)
+file_path <- system.file("extdata", "fire_data.csv", package = "AustraliaFirePredictor")
+output_model_path <- system.file("model", "firePredictorModel.xgb", package = "AustraliaFirePredictor")
+
+results <- fire_location_check(file_path, output_model_path)
+
+# View the results
+print(results)
+```
+```{r}
+# Example usage
+input_data <- data.frame(
+  longitude = -119.7,
+  latitude = 34.5,
+  brightness = 300.0,
+  frp = 12.5,
+  satellite = "Aqua",
+  instrument = "MODIS",
+  daynight = "D",
+  scan = 1.1,
+  track = 1.2,
+  bright_t31 = 290.0
+)
+
+# Call the function with the input data
+predictions <- predict_fire(input_data)
+
+# Print predictions
+print(predictions)
+```
